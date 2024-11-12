@@ -1,3 +1,22 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
-//TODO Crie a entidade de User
+//aqui eu criei a entidade de User
+import { Post } from "./Post";
+
+@Entity()
+export class User {
+    @PrimaryGeneratedColumn()
+    id!: number;
+
+    @Column()
+    firstName!: string;
+
+    @Column()
+    lastName!: string;
+
+    @Column()
+    email!: string;
+
+    @OneToMany(() => Post, (post) => post.user)
+    posts!: Post[];
+}
